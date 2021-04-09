@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import firebase from "../firebase"
 import MenuItems from './MenuItems';
-// import { uuid } from 'uuidv4';
+import { uuid } from 'uuidv4';
 
 const Admin = () => {
   const [datas, setData] = useState([])
@@ -26,7 +26,7 @@ const Admin = () => {
     const {types} = e.target;
     setType(types.value)
   }
-  const addSchool = (newItem) => {
+  const addData = (newItem) => {
     ref
       .doc(newItem.id)
       .set(newItem)
@@ -34,14 +34,22 @@ const Admin = () => {
         console.error(err);
       });
   }
+  const deleteData = (item) => {
+    ref
+      .doc(item.id)
+      .delete()
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const {name, price, ingridient} = e.target;
-    addSchool({
+    addData({
       name: name.value,
       price: price.value,
       ingridient: ingridient.value.split(","),
-      // id: uuid()
+      id: uuid()
     })
     getData()
     e.target.reset();
@@ -70,17 +78,10 @@ const Admin = () => {
           <label>Price</label>
           <input name="price" type="text" />
           <label>Ingridient</label>
-          <input name="ingridient" type="text" />
+          <textarea name="ingridient" type="text" />
           <button type="submit">Submit</button>
       </form>
-      {/* {datas.map(item => {
-        return <div>
-          <h1>{item.name}</h1>
-          <h2>{item.price}</h2>
-          <h4>{item.ingridient}</h4>
-        </div>
-      })} */}
-      {datas.map(item => <MenuItems item={item} />)}
+      {datas.map(item => <MenuItems item={item} handleDelete={deleteData} />)}
         </div>
      );
 }
