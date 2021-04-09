@@ -1,8 +1,9 @@
+import Admin from "./components/Admin";
 
 function App() {
   return (
     <div className="App">
-      
+      <Admin />
     </div>
   );
 }

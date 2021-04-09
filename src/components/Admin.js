@@ -1,46 +1,86 @@
 import { useEffect, useState } from 'react';
-import firebase from "./firebase"
+import firebase from "../firebase"
+import MenuItems from './MenuItems';
+// import { uuid } from 'uuidv4';
 
 const Admin = () => {
-    const [datas, setData] = useState(null)
-  const ref =firebase.firestore().collection("starters")
-
-  const getData = () =>{
-    const items = [];
-    ref.get().then((item) => {
-      item.docs.forEach(doc => {
-
-        items.push(doc.data())
-      })
-      setData(items)
-      setTimeout(() => {
-        console.log(datas)
-      }, 3000)
-      // console.log(item.docs)
-      // const items = item.docs.map(doc => (doc.data))
-      // setData(items)
-    })
+  const [datas, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [type, setType] = useState("starters")
+  const ref =firebase.firestore().collection(type)
+  
+  function getData() {
+    setLoading(true);
+    ref.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setData(items);
+      setLoading(false);
+    });
   }
-  useEffect(() => {
-    getData()
-  }, [])
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    const {types} = e.target;
+    setType(types.value)
+  }
+  const addSchool = (newItem) => {
+    ref
+      .doc(newItem.id)
+      .set(newItem)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const {name, price, ingridient} = e.target;
-    ref.add({
+    addSchool({
       name: name.value,
       price: price.value,
-      ingridient: ingridient.value.split(",")
+      ingridient: ingridient.value.split(","),
+      // id: uuid()
     })
+    getData()
+    e.target.reset();
+  }
+  useEffect(() =>{
+    getData()
+  }, [type])
+
+  if(loading){
+    return <h1>Loading...</h1>
   }
     return ( 
         <div>
+          <form onSubmit={handleSelect}>
+            <label>Type</label>
+            <select name="types">
+              <option value='starters'>Starters</option>
+              <option value='beef burger'>Beef Burger</option>
+              <option value='chicken burger'>Chicken Burger</option>
+            </select>
+            <button type="submit">Select</button>
+          </form>
         <form onSubmit={handleSubmit}>
-        <input name="name" type="text" />
-        <input name="price" type="text" />
-        <input name="ingridient" type="text" />
-        <button type="submit">Submit</button>
+          <label>Name</label>
+          <input name="name" type="text" />
+          <label>Price</label>
+          <input name="price" type="text" />
+          <label>Ingridient</label>
+          <input name="ingridient" type="text" />
+          <button type="submit">Submit</button>
       </form>
+      {/* {datas.map(item => {
+        return <div>
+          <h1>{item.name}</h1>
+          <h2>{item.price}</h2>
+          <h4>{item.ingridient}</h4>
+        </div>
+      })} */}
+      {datas.map(item => <MenuItems item={item} />)}
         </div>
      );
 }
