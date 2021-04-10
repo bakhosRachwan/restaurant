@@ -56,6 +56,7 @@ const Admin = () => {
   }
   useEffect(() =>{
     getData()
+    //eslint-disable-next-line
   }, [type])
 
   if(loading){
