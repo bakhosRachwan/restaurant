@@ -12,8 +12,6 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from "../Logo.png"
 
-const Links = ['Dashboard', 'Projects', 'Team'];
-
 const NavLink = ({ children, dest }) => (
   <Link
     px={2}
@@ -71,9 +69,10 @@ export default function Simple() {
         {isOpen ? (
           <Box pb={4}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+            <NavLink dest="##">HOME</NavLink>
+            <NavLink dest="##">MENU</NavLink>
+            <NavLink dest="##">OFFERS</NavLink>
+            <NavLink dest="##">ABOUT</NavLink>
             </Stack>
           </Box>
         ) : null}
