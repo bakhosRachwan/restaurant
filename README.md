@@ -16,7 +16,7 @@ THe Demo Link Will be Available SOON!!
 ## Build with :hammer_and_wrench:
 
 - [ReactJS](https://reactjs.org/) - The web framework used
-- [Chakra UI](https://chakra-ui.com/) - For the translation
+- [Chakra UI](https://chakra-ui.com/) - The CSS framework
 - [Firebase](https://firebase.google.com/) - For hosting
 
 ## Installation
