@@ -4,7 +4,7 @@ import Selected from "../SelectedList/Selected";
 
 const Sidebar = () => {
     return ( 
-        <Container w="410px" h="835px" borderRadius="10px" color="white" bg="#313236" >
+        <Container w={["350px", "410px"]} h="835px" borderRadius="10px" color="white" bg="#313236" >
             <Box>
                 <Text my="2">Order #212</Text>
                 <HStack>

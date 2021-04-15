@@ -1,17 +1,29 @@
-import { Text, Heading, Button, Flex } from "@chakra-ui/react";
+import { Text, Heading, Button, Flex, useDisclosure, Link } from "@chakra-ui/react";
+import { useContext } from "react";
+import { StateContext } from "../../State";
+import Modall from "../Modal/Modal";
 
-const Card = () => {
+
+const Card = ({item}) => {
+  const [, dispatch] = useContext(StateContext);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const handleClick = () => {
+    dispatch({ type: "SET_ORDER", payload: item})
+  }
   return (
-      <Flex w={[ "180px", "200px", "215px"]} h={[ "180px", "200px", "215px"]} maxW="sm" borderRadius="lg" overflow="hidden" bg="brand.900" flexDirection="column" justifyContent="space-evenly"  m="5" as="a"  >
-        <Heading m="5" mb="0" as="h4" alignSelf="center" size={[ "sm", "md"]} color="white" >
-          Classic Burger
+      <Flex w={[ "180px", "200px", "215px"]} h={[ "180px", "200px", "215px"]} maxW="sm" borderRadius="lg" overflow="hidden" bg="brand.900" flexDirection="column" justifyContent="space-evenly" as="a"  >
+        <Heading m="5" mb="0" as="h4" alignSelf="center" size={[ "sm", "md"]} color="white" textAlign="center" >
+          {item.name}
         </Heading>
         <Text m="5" mt="0" as="b" color="white" alignSelf="center">
-          18 000 L.L
+          {item.price}{" L.L"}
         </Text>
-        <Button colorScheme="orange" color="white" variant="solid" size="lg"  alignSelf="center" >
+        <Link onClick={onOpen} alignSelf="center">See More..</Link>
+        <Button onClick={handleClick} colorScheme="orange" color="white" variant="solid" size="lg"  alignSelf="center" >
           ORDER
         </Button>
+      <Modall item={item} isOpen={isOpen} onClose={onClose} onOpen={onOpen} handleClick={handleClick} />
       </Flex>
   );
 };
