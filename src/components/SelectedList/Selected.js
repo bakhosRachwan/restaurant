@@ -6,7 +6,7 @@ import SelectedItem from "../SelectedItem/SelectedItem";
 const Selected = () => {
     const [state] = useContext(StateContext)
     return ( 
-        <Box className="contOverflow"  overflowY="scroll" maxH="60vh"  w="410px">
+        <Box overflowY="scroll" maxH="60vh"  w="100%">
             {state.order.map(item => <SelectedItem item={item} key={item.id} />)}            
         </Box>
      );

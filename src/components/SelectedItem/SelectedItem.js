@@ -3,9 +3,9 @@ import { MdDelete } from "react-icons/md";
 
 const SelectedItem = ({item}) => {
   return (
-    <Box w={["200px", "360px"]} h={["100px", "120px"]}>
+    <Box w={["100%", "355px"]} h={["100px", "120px"]} >
       <HStack display="flex" justifyContent="space-evenly" mb="2"color="white" >
-        <Text w="64%">{item.name}</Text>
+        <Text w="64%" >{item.name}</Text>
         <Input type="number" defaultValue={1} min={1} max={20} w="15%" />
         <Text>{item.price}</Text>
       </HStack>

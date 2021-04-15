@@ -1,14 +1,19 @@
 import firebase from "../../firebase";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Card from "../../components/Card/Card";
-import { Box, Grid, VStack, Button, Text, Select } from "@chakra-ui/react";
-import { StateContext } from "../../State";
+import {
+  Box,
+  SimpleGrid,
+  VStack,
+  Button,
+  Text,
+  Select,
+} from "@chakra-ui/react";
 
 const Menu = () => {
   const [data, setData] = useState([]);
   const [type, setType] = useState("starters");
-  const [state] = useContext(StateContext)
   const ref = firebase.firestore().collection(type);
 
   const getData = () => {
@@ -31,7 +36,13 @@ const Menu = () => {
   }, [type]);
 
   return (
-    <Box display={{md: "flex"}}>
+    <Box
+      display={{ md: "flex" }}
+      flexDir={{ sm: "column", lg: "row" }}
+      m={[1, 4]}
+      justifyContent={{ lg: "space-evenly" }}
+    >
+      <Box>
         <form onSubmit={handleSelect}>
           <VStack>
             <Text>Menu Page:</Text>
@@ -43,12 +54,12 @@ const Menu = () => {
             <Button type="submit">Select</Button>
           </VStack>
         </form>
-      <Grid templateColumns={{xs:"repeat(2, 1fr)" , md: "repeat(5, 1fr)"}} gap={6}>
+      </Box>
+      <SimpleGrid columns={[2, 3]} spacing={[2, 6]}>
         {data.map((item) => (
           <Card item={item} />
         ))}
-      </Grid>
-      {console.log(state.order)}
+      </SimpleGrid>
       <Sidebar />
     </Box>
   );
