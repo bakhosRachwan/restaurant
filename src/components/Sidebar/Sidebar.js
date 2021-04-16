@@ -1,8 +1,10 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Container, Divider, Flex, VStack, Text, HStack } from "@chakra-ui/layout";
+import { useHistory } from "react-router-dom";
 import Selected from "../SelectedList/Selected";
 
 const Sidebar = () => {
+    const history = useHistory();
     return ( 
         <Container w={["350px", "410px"]} h="835px" borderRadius="10px" color="white" bg="#313236" >
             <Box>
@@ -37,7 +39,7 @@ const Sidebar = () => {
                         <Text>12.50</Text>
                     </VStack>
                 </Flex>
-                <Button bg="brand.300" color="white" >Continue to Payment</Button>
+                <Button bg="brand.300" color="white" onClick={() => history.push("/user")} >Continue to Payment</Button>
             </Box>
         </Container>
      );
