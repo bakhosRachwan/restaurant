@@ -9,6 +9,7 @@ import {
   useColorModeValue,
   Stack,
 } from '@chakra-ui/react';
+import { useHistory } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from "../Logo.png"
 
@@ -28,7 +29,7 @@ const NavLink = ({ children, dest }) => (
 
 export default function Simple() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const history = useHistory();
   return (
     <>
       <Box bg="none" px={4}>
@@ -48,17 +49,19 @@ export default function Simple() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
 
-            <NavLink dest="##">HOME</NavLink>
-            <NavLink dest="##">MENU</NavLink>
-            <NavLink dest="##">OFFERS</NavLink>
-            <NavLink dest="##">ABOUT</NavLink>
+            <NavLink dest="/">HOME</NavLink>
+            <NavLink dest="/menu">MENU</NavLink>
+            <NavLink dest="/admin">OFFERS</NavLink>
+            <NavLink dest="/about">ABOUT</NavLink>
               
             </HStack>
           <Button
               variant={'solid'}
-              colorScheme={'orange'}
+              bg="brand.300"
+              color="white"
               size={'sm'}
               mr={4}
+              onClick={() => history.push(`/signup`)}
               >
               Sign In
             </Button>
@@ -69,10 +72,10 @@ export default function Simple() {
         {isOpen ? (
           <Box pb={4}>
             <Stack as={'nav'} spacing={4}>
-            <NavLink dest="##">HOME</NavLink>
-            <NavLink dest="##">MENU</NavLink>
+            <NavLink dest="/">HOME</NavLink>
+            <NavLink dest="/menu">MENU</NavLink>
             <NavLink dest="##">OFFERS</NavLink>
-            <NavLink dest="##">ABOUT</NavLink>
+            <NavLink dest="/about">ABOUT</NavLink>
             </Stack>
           </Box>
         ) : null}

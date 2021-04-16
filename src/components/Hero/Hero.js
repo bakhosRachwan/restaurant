@@ -8,7 +8,10 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+
 export default function CallToActionWithVideo() {
+  const history = useHistory();
   return (
     <Container maxW={"7xl"}>
       <Stack
@@ -66,10 +69,17 @@ export default function CallToActionWithVideo() {
               px={6}
               bg={"brand.300"}
               _hover={{ bg: "orange" }}
+              onClick={() => history.push(`/signup`)}
             >
-              Sign In
+              Sign Up
             </Button>
-            <Button rounded={"full"} size={"lg"} fontWeight={"normal"} px={6}>
+            <Button 
+              rounded={"full"} 
+              size={"lg"} 
+              fontWeight={"normal"} 
+              px={6}
+              onClick={() => history.push(`/about`)}
+              >
               About Us
             </Button>
           </Stack>
