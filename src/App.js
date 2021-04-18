@@ -10,6 +10,7 @@ import PrivateRoute from "./pages/Authentication/PrivateRoute";
 import Login from "./pages/Authentication/Login";
 import Signup from "./pages/Authentication/Signup";
 import User from "./pages/User/User";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/login" component={ Login } />
       <Route exact path="/admin" component={ Admin } />
       <Route exact path="/user" component={ User } />
+      <Route exact path="/about" component={ About } />
       <Route exact path="/" component={ Hero } />
       <Footer />
     </Flex>

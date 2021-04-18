@@ -25,7 +25,7 @@ import {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
         <Stack direction={'row'} spacing={6}>
-          <Link href={'#'}>About</Link>
+          <Link href={'/about'}>About</Link>
           <Link href={'#'}>Contact</Link>
         </Stack>
           <Text>All rights reserved © 2021</Text>

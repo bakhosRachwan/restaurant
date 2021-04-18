@@ -63,7 +63,7 @@ export default function Simple() {
               mr={4}
               onClick={() => history.push(`/signup`)}
               >
-              Sign In
+              Sign Up
             </Button>
           </HStack>
           </Flex>
