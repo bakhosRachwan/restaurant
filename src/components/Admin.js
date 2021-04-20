@@ -92,7 +92,7 @@ const Admin = () => {
       </Box>
       <Box m="4">
         {datas.map((item) => (
-          <MenuItems item={item} handleDelete={deleteData} />
+          <MenuItems item={item} key={item.id} handleDelete={deleteData} />
         ))}
       </Box>
     </>
