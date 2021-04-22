@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { withRouter } from "react-router";
 import firebase from "../../firebase";
 import {
@@ -16,22 +16,48 @@ import {
   useColorModeValue,
   Divider,
 } from "@chakra-ui/react";
+import { StateContext } from "../../State";
 
 const Signup = ({ history }) => {
+  const ref = firebase.firestore().collection("users");
+  const [,dispatch] = useContext(StateContext);
+
+  const addData = (newItem) => {
+    ref
+      .doc(newItem.id)
+      .set(newItem)
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
-      const { email, password } = event.target.elements;
+      const { email, password, name } = event.target.elements;
       try {
-        await firebase
+        const { user } = await firebase
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
+        
+        addData({
+          name: name.value,
+          email: email.value,
+          id: user.uid,
+          role: "user"
+        })
+        dispatch({ type: "CURRENT_USER", payload: user.uid})
         history.push("/menu");
       } catch (error) {
-        alert(error);
+        // alert(error);
+        const errorCode = error.code;
+        if (errorCode === 'auth/email-already-in-use') {
+          alert("Email already in use")
+        }
         history.push("/login");
       }
     },
+    //eslint-disable-next-line
     [history]
   );
 
@@ -52,6 +78,10 @@ const Signup = ({ history }) => {
         >
           <form onSubmit={handleSignUp}>
             <Stack spacing={4}>
+              <FormControl id="name">
+                <FormLabel>Full Name</FormLabel>
+                <Input type="text" />
+              </FormControl>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
                 <Input type="email" />

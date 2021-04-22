@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 export const StateContext = createContext({});
-const initialState = { order: [] };
+const initialState = { order: [], current: 0 };
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -8,6 +8,8 @@ const reducer = (state, action) => {
       let t = [...state.order];
       t.push(action.payload);
       return { ...state, order: t };
+    case "CURRENT_USER":
+      return { ...state, current: action.payload };
     default:
       return state;
   }
