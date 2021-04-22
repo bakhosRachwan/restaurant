@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import firebase from "../../firebase";
 import { AuthContext } from "../Authentication/Auth";
+import { StateContext } from "../../State";
 import {
   Flex,
   Box,
@@ -18,14 +19,19 @@ import {
 } from "@chakra-ui/react";
 
 const Login = ({ history }) => {
+  const [, dispatch] = useContext(StateContext);
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await firebase
+        const { user}  = await firebase
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
+        
+          console.log(user.uid)
+        dispatch({ type: "CURRENT_USER", payload: user.uid})
+
         history.push("/menu");
       } catch (error) {
         alert(error);
