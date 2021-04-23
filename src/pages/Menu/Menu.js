@@ -5,7 +5,7 @@ import Card from "../../components/Card/Card";
 import {
   Box,
   SimpleGrid,
-  VStack,
+  HStack,
   Button,
   Text,
   Select,
@@ -40,27 +40,30 @@ const Menu = () => {
       display={{ md: "flex" }}
       flexDir={{ sm: "column", lg: "row" }}
       m={[1, 4]}
-      justifyContent={{ lg: "space-evenly" }}
+      p="4"
+      justifyContent={{ lg: "space-between" }}
     >
       <Box>
         <form onSubmit={handleSelect}>
-          <VStack>
+          <HStack mb="4">
             <Text>Menu Page:</Text>
-            <Select name="types" w="200px">
+            <Select name="types" w="200px" borderColor="brand.900">
               <option value="starters">Starters</option>
               <option value="beef burger">Beef Burger</option>
               <option value="chicken burger">Chicken Burger</option>
             </Select>
-            <Button type="submit">Select</Button>
-          </VStack>
+            <Button type="submit" bg="brand.300" color="white" >Select</Button>
+          </HStack>
         </form>
+        <SimpleGrid columns={[1, 3, 3, 4]} spacing={[2, 6]}>
+          {data.map((item) => (
+            <Card item={item} />
+          ))}
+        </SimpleGrid>
       </Box>
-      <SimpleGrid columns={[2, 3]} spacing={[2, 6]}>
-        {data.map((item) => (
-          <Card item={item} />
-        ))}
-      </SimpleGrid>
-      <Sidebar />
+      <Box w={["95%", "26%"]}>
+        <Sidebar />
+      </Box>
     </Box>
   );
 };
