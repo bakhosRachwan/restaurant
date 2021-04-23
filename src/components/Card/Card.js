@@ -12,7 +12,7 @@ const Card = ({item}) => {
     dispatch({ type: "SET_ORDER", payload: item})
   }
   return (
-      <Flex w={[ "180px", "200px", "215px"]} h={[ "180px", "200px", "215px"]} maxW="sm" borderRadius="lg" overflow="hidden" bg="brand.900" flexDirection="column" justifyContent="space-evenly" as="a"  >
+      <Flex w={[ "95%", "200px", "235px"]} h={[ "180px", "200px", "235px"]} maxW="sm" borderRadius="lg" overflow="hidden" bg="brand.900" flexDirection="column" justifyContent="space-evenly" as="a"  >
         <Heading m="5" mb="0" as="h4" alignSelf="center" size={[ "sm", "md"]} color="white" textAlign="center" >
           {item.name}
         </Heading>
@@ -20,7 +20,7 @@ const Card = ({item}) => {
           {item.price}{" L.L"}
         </Text>
         <Link onClick={onOpen} alignSelf="center">See More..</Link>
-        <Button onClick={handleClick} colorScheme="orange" color="white" variant="solid" size="lg"  alignSelf="center" >
+        <Button onClick={handleClick} colorScheme="orange" color="white" variant="solid" size="md"  alignSelf="center" >
           ORDER
         </Button>
       <Modall item={item} isOpen={isOpen} onClose={onClose} onOpen={onOpen} handleClick={handleClick} />

@@ -6,11 +6,11 @@ import Selected from "../SelectedList/Selected";
 const Sidebar = () => {
     const history = useHistory();
     return ( 
-        <Container w={["350px", "410px"]} h="835px" borderRadius="10px" color="white" bg="#313236" >
+        <Container w={["100%", "410px"]} h={["785px", "835px"]} borderRadius="10px" color="white" bg="#313236" >
             <Box>
-                <Text my="2">Order #212</Text>
+                <Text my="2" pt="2">Your Selected Items:</Text>
                 <HStack>
-                    <Button bg="brand.300" color="white"  >Dine IN</Button>
+                    <Button bg="brand.300" color="white">Dine IN</Button>
                     <Button color="brand.300" variant="outline" >Take Away</Button>
                     <Button color="brand.300" variant="outline" >Delivery</Button>
                 </HStack>
