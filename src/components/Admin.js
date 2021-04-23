@@ -49,7 +49,7 @@ const Admin = () => {
     addData({
       name: name.value,
       price: price.value,
-      ingridient: ingridient.value.split(","),
+      ingridient: ingridient.value,
       id: uuid(),
     });
     getData();
