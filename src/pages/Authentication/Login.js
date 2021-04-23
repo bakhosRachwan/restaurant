@@ -38,14 +38,15 @@ const Login = ({ history }) => {
         history.push("/signup");
       }
     },
+    //eslint-disable-next-line
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/menu" />;
-  }
+  // if (currentUser) {
+  //   return <Redirect to="/menu" />;
+  // }
   return (
     <Flex
       minH={"100vh"}
