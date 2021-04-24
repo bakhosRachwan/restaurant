@@ -39,7 +39,6 @@ const Signup = ({ history }) => {
         const { user } = await firebase
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
-        
         addData({
           name: name.value,
           email: email.value,
@@ -62,7 +61,7 @@ const Signup = ({ history }) => {
   );
 
   return (
-    <Flex minH={"100vh"} align={"center"} justify={"center"} bg="none">
+    <Flex minH={"100vh"} align={"center"} justify={"center"} bg="brand.100">
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>

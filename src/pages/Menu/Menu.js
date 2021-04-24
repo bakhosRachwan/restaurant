@@ -57,7 +57,7 @@ const Menu = () => {
         </form>
         <SimpleGrid columns={[1, 3, 3, 4]} spacing={[2, 6]}>
           {data.map((item) => (
-            <Card item={item} />
+            <Card item={item} key={item.id} />
           ))}
         </SimpleGrid>
       </Box>
