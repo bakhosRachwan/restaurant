@@ -16,17 +16,23 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-    <Flex className="App" bg="brand.100" h="100%" flexDirection="column" justifyContent="space-between">
-      <Navbar />
-      <PrivateRoute exact path="/menu" component={ Menu } />
-      <Route exact path="/signup" component={ Signup } />
-      <Route exact path="/login" component={ Login } />
-      <Route exact path="/admin" component={ Admin } />
-      <Route exact path="/user" component={ User } />
-      <Route exact path="/about" component={ About } />
-      <Route exact path="/" component={ Hero } />
-      <Footer />
-    </Flex>
+        <Flex
+          className="App"
+          bg="brand.100"
+          h="100%"
+          flexDirection="column"
+          justifyContent="space-between"
+        >
+          <Navbar />
+          <PrivateRoute exact path="/menu" component={Menu} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/" component={Hero} />
+          <Footer />
+        </Flex>
       </Router>
     </AuthProvider>
   );

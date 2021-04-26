@@ -51,7 +51,7 @@ export default function Simple() {
 
             <NavLink dest="/">HOME</NavLink>
             <NavLink dest="/menu">MENU</NavLink>
-            <NavLink dest="/admin">OFFERS</NavLink>
+            <NavLink dest="/">OFFERS</NavLink>
             <NavLink dest="/about">ABOUT</NavLink>
               
             </HStack>

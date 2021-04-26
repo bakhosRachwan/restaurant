@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest}) => {
         <Route
             {...rest}
             render={routerProps =>
-                currentUser !== undefined? (
+                !!currentUser? (
                     <RouteComponent  />
                 ):(
                     <Redirect to={"/signup"} />
