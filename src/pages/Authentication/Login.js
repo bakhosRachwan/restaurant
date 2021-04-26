@@ -15,7 +15,6 @@ import {
   Button,
   Heading,
   Text,
-//   useColorModeValue,
 } from "@chakra-ui/react";
 
 const Login = ({ history }) => {
@@ -42,11 +41,11 @@ const Login = ({ history }) => {
     [history]
   );
 
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-  // if (currentUser) {
-  //   return <Redirect to="/menu" />;
-  // }
+  if (!!currentUser) {
+    return <Redirect to="/menu" />;
+  }
   return (
     <Flex
       minH={"100vh"}
