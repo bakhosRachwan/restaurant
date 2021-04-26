@@ -1,10 +1,15 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Container, Divider, Flex, VStack, Text, HStack } from "@chakra-ui/layout";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { StateContext } from "../../State";
 import Selected from "../SelectedList/Selected";
 
 const Sidebar = () => {
     const history = useHistory();
+    const [state] = useContext(StateContext);
+    let sum = 0;
+
     return ( 
         <Container w={["100%", "410px"]} h={["785px", "835px"]} borderRadius="10px" color="white" bg="#313236" >
             <Box>
@@ -36,7 +41,10 @@ const Sidebar = () => {
                     </VStack>
                     <VStack>
                         <Text>0</Text>
-                        <Text>12.50</Text>
+                        {state.order !== []? (state.order.map(item => 
+                             sum += parseInt(item.price)
+                        )) : null}
+                        <Text>{sum}</Text>
                     </VStack>
                 </Flex>
                 <Button bg="brand.300" color="white" onClick={() => history.push("/user")} >Continue to Payment</Button>
