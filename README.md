@@ -1,6 +1,6 @@
 # Restaurant
 
-It is a web app for a Restaurant where you can view the menu items click on thm to place an order and many more features!
+It is a web app for a Restaurant where you can view the menu items click on them to place an order and many more features!
 
 ## Features 
 - Search for Food in the Menu
